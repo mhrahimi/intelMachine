@@ -1,4 +1,4 @@
-function [no, sensor, label, extention, t, subNo] = dsNameExtract(name)
+function [no, source, label, extention, subNo] = dsNameExtract(name)
 
 for i = 1:length(name)
     editedName = name{i};
@@ -10,20 +10,16 @@ for i = 1:length(name)
     end
     
     no(i) = str2double(betweenUnderlines(editedName, 'N'));
-    sensor(i) = {betweenUnderlines(editedName, 'S')};
+    source(i) = {betweenUnderlines(editedName, 'S')};
     label(i) = {betweenUnderlines(editedName, 'L')};
     extention(i) = {extentionFinder(editedName)};
-    if 6 <= nargout
+    if 5 <= nargout
         subNo(i) = {betweenUnderlines(editedName, 'g')};
     end
     
     i = i+1;
 end
 
-if 5 <= nargout
-    t = table(no', sensor', label', extention');
-    t.Properties.VariableNames = [{'No'}, {'Sensor'}, {'Label'}, {'Extention'}];
-end
 
     function out = betweenUnderlines(str, identifier)
         nS = strfind(str, [identifier, '_']) + 2;

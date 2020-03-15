@@ -1,0 +1,11 @@
+clear all
+clc
+
+no = [1:10];
+source = ["Mic", "AccelerameterY"];
+% label = ["chatter", "stable"];
+label = "
+extention = ".csv";
+dsPath = "C:\Users\mhoss\Dropbox\Project MASc\Refactor\intelMachine\DS";
+
+a = DS(no, source, label, extention, dsPath)
