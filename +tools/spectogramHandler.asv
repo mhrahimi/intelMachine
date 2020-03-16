@@ -1,0 +1,21 @@
+function spectogramHandler(signal, Fs, windowSize, skipSize)
+
+t = 1;
+for rightEnd = windowSize:skipSize:length(signal)
+    leftEnd = rightEnd - windowSize + 1;
+    thisSignal = signal(leftEnd: rightEnd);
+    [mag(t,:), f] = tools.fftHandler(thisSignal, Fs);
+    
+    t = t+1;
+end
+
+mag = mag(:,2:end);
+
+if nargout == 0
+    mesh(f,mag);
+    xlabel('x');
+    ylabel('y');
+    zlabel('z');
+end
+    
+end

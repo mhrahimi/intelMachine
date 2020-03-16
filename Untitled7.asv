@@ -1,4 +1,0 @@
-%% DS generation
-no = '*';
-source = "Mic";
-label = ["chatter", "stable", "entrance", "exit", "air"];

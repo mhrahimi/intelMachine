@@ -1,4 +1,4 @@
-function [P1, f] = fftHandler(input, Fs)
+function [mag, f] = fftHandler(input, Fs)
 % fftHandler  calculates the Fast Fourier transform.
 %   [P1, f] = fftHandler(input, Fs) Calculates fft of input with a sampling frequency of Fs and output the magnitude in P1 and frequency in f.
 %
@@ -27,18 +27,22 @@ else
     t = (0:L-1)*T;        % Time vector
 end
 
+if size(input, 1) == 1  % convert to horizontal if it was vertical
+    input = input';
+end
 
 % arr = arr(:, 2:end);
 Y = fft(input);
 P2 = abs(Y/L);
-P1 = P2(1:floor(L/2)+1, :);
-P1(2:end-1, :) = 2*P1(2:end-1, :);
+mag = P2(1:floor(L/2)+1, :);
+mag(2:end-1, :) = 2*mag(2:end-1, :);
 
 f = Fs*(0:(L/2))/L;
+f = f';
 
 if graphingIsOn
 %     figure;
-    plot(f, P1);
+    plot(f, mag);
     xlabel('Frequency (Hz)');
     ylabel('Magnitude');
 end
