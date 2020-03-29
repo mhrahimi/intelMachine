@@ -1,6 +1,5 @@
-function dsOut = dsGrindup(dsIn, batchSize, doubleOut, ind)
+function [Parts, gNum] = dsGrindup(dsIn, batchSize, doubleOut, ind)
 waitbarIsOn = 0;
-dsOut = dsIn;
 if nargin <=3
     if nargin <= 2
         doubleOut = 1;
@@ -11,31 +10,31 @@ end
 
 if waitbarIsOn, wBar = waitbar(0,'Grinding-up..');, end
 for i = ind 
-    thisLineCount = util.fileLineCount(dsIn.Files{i});
-    parts = internalGrinderFunction(thisLineCount, batchSize, doubleOut);
-    dsOut.Parts(i) = {parts};
-    dsOut.gNum(i) = length(parts);
+    thisFileLineCount = util.fileLineCount(dsIn.Files{i}); % TODO speedup by adding cach option
+    parts = internalGrinderFunction(thisFileLineCount, batchSize, doubleOut);
+    Parts(i) = {parts};
+    gNum(i) = length(parts);
     if waitbarIsOn, waitbar(i/dsIn.Len, wBar);, end
 end
 
 if waitbarIsOn, close(wBar);, end
 
-dsOut.gread = @(no,piece) gread(no,piece);
-
-    function dataOut = gread(no, piece)
-        if dsOut.Len < no || dsOut.gNum(no) < piece
-            dataOut = NaN;
-            return
-        end
-        sl = dsOut.Parts(no);
-        sl = sl{1};
-        sl = sl(piece,1);
-        
-        el = dsOut.Parts(no);
-        el = el{1};
-        el = el(piece,2);
-        dataOut = util.freadLine2Line(dsOut.Files{no},sl,el);
-    end
+% dsOut.gread = @(no,piece) gread(no,piece);
+% 
+%     function dataOut = gread(no, piece)
+%         if dsOut.Len < no || dsOut.gNum(no) < piece
+%             dataOut = NaN;
+%             return
+%         end
+%         sl = dsOut.Parts(no);
+%         sl = sl{1};
+%         sl = sl(piece,1);
+%         
+%         el = dsOut.Parts(no);
+%         el = el{1};
+%         el = el(piece,2);
+%         dataOut = util.freadLine2Line(dsOut.Files{no},sl,el);
+%     end
 
 end
 
