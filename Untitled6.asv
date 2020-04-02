@@ -1,0 +1,8 @@
+function properties = propertiesReader(obj, index)
+properties = table2struct(properties(index,:));
+properties.File = obj.File;
+        No
+        Label
+        Source
+        Extention
+end

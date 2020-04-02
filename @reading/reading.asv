@@ -10,7 +10,7 @@ classdef reading < handle
         Extention
         Len
         
-        Part = {};
+        Part= {};
         gNum
         
         filteringFunction = @(x) x;
