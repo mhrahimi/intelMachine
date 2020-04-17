@@ -1,5 +1,0 @@
-function varargout = narginHandler(numInputs, varargin)
-
-
-
-end

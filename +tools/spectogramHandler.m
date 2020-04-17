@@ -1,6 +1,8 @@
 function [mag, f, time] = spectogramHandler(signal, Fs, windowSize, skipSize)
 
 t = 1;
+mag = [];
+f = [];
 for rightEnd = windowSize:skipSize:length(signal)
     leftEnd = rightEnd - windowSize + 1;
     thisSignal = signal(leftEnd: rightEnd);
