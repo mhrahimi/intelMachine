@@ -12,8 +12,8 @@ classdef reading < handle
         Len
         
         % grinder attributes
-%         FileLineCount
-%         BatchSize
+        %         FileLineCount
+        %         BatchSize
         BatchInd = {};
         BatchCount
         
@@ -55,7 +55,7 @@ classdef reading < handle
                 end
             end
             [obj.File, obj.No, obj.Source, obj.Label, obj.Extention] = DStools.dsConstructor(no, source, label, extention, dsPath);
-
+            
             obj.Len = length(obj.File);
             
             [obj.LookupTable, obj.Map.No, obj.Map.Source, obj.Map.Label, obj.LookupStruct] = DStools.dsLookupTable(obj.No, obj.Source, obj.Label);
@@ -67,6 +67,16 @@ classdef reading < handle
             end
             obj.Properties = [table(no','VariableNames',"No"), allProperties(no, :)];
         end
+        
+%         function varargout = subsref(obj, S)
+%             if 1 <= numel(S) && strcmp(S(1).type, '{}')
+%                 % Looks like obj.method(args)
+%                 disp(S(1).subs);
+%             else
+%                 [varargout{1:nargout}] = builtin('subsref', obj, S);
+%             end
+%         end
+        
     end
 end
 
