@@ -24,17 +24,30 @@ end
 
 % end
 
-[height, width] = size(rawData);
+[~, width] = size(rawData);
+if ~obj.FilteringIsOn & ~obj.TransformationIsOn
+    data = rawData;
+else
+    data = cell(width, 1);
+end
 if obj.FilteringIsOn
     for i = 1:width
         if nargin(obj.FilteringFunction) == 2 % passes the properties to a function with two inputs
-            data(:,i) = obj.FilteringFunction(rawData(:,i), propertiesFetch(index,'Part', i));
+            data(:,i) = {obj.FilteringFunction(rawData(:,i), obj.propertiesFetch(index,'Part', i))};
         else
-            data(:,i) = obj.FilteringFunction(rawData(:,i));
+            data(:,i) = {obj.FilteringFunction(rawData(:,i))};
         end
     end
-else
-    data = rawData;
 end
+if obj.TransformationIsOn
+    for i = 1:width
+        if nargin(obj.TransformationFunction) == 2 % passes the properties to a function with two inputs
+            data(:,i) = {obj.TransformationFunction(rawData(:,i), obj.propertiesFetch(index,'Part', i))};
+        else
+            data(:,i) = {obj.TransformationFunction(rawData(:,i))};
+        end
+    end
+end
+
 
 end
