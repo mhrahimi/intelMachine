@@ -5,10 +5,16 @@ clear all
 addpath("C:\Users\mhoss\Dropbox\Project MASc\Main");
 %%
 clc
-dsParam.no = [210:278];
-% dsParam.label = ["stable"];
-dsParam.label = '*';
-dsParam.source =  'Mic';
+% dsParam.no = [210:278];
+% % dsParam.label = ["stable"];
+% dsParam.label = '*';
+% dsParam.source =  ["Mic", "AccelerationY"];
+% dsParam.extention = ".csv";
+% dsParam.dsPath = 'C:\Users\mhoss\Dropbox\Project MASc\Main\DS';
+
+dsParam.no = [1:278];
+dsParam.label = ["air"];
+dsParam.source =  ["Mic"];
 dsParam.extention = ".csv";
 dsParam.dsPath = 'C:\Users\mhoss\Dropbox\Project MASc\Main\DS';
 
