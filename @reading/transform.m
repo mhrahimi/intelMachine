@@ -11,12 +11,15 @@ for i = ind
     for j = 1:width
         if nargin(transformationFunctoin) == 2 % passes the properties to a function with two inputs
             thisData = transformationFunctoin(dataIn(:,j), obj.propertiesFetch(i,"SubNo", j));
+%             vargout = {transformationFunctoin(dataIn(:,j), obj.propertiesFetch(i,"SubNo", j))};
         else
             thisData = transformationFunctoin(dataIn(:,j));
+%             vargout = {transformationFunctoin(dataIn(:,j))};
         end
         if ~isempty(thisData)
             data(i,:,j) = thisData;
         end
     end
+    disp(i/numel(ind));
 end
 end
