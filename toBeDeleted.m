@@ -8,13 +8,13 @@ clc
 % dsParam.no = [210:278];
 % % dsParam.label = ["stable"];
 % dsParam.label = '*';
-% dsParam.source =  ["Mic", "AccelerationY"];
+dsParam.source =  ["AccelerationY"];
 % dsParam.extention = ".csv";
 % dsParam.dsPath = 'C:\Users\mhoss\Dropbox\Project MASc\Main\DS';
 
 dsParam.no = [1:278];
-dsParam.label = ["air"];
-dsParam.source =  ["Mic"];
+dsParam.label = ["air", "stable", "stableSide", "entrance", "exit"];
+% dsParam.source =  ["Mic"];
 dsParam.extention = ".csv";
 dsParam.dsPath = 'C:\Users\mhoss\Dropbox\Project MASc\Main\DS';
 
@@ -87,8 +87,8 @@ net = trainNetwork(ds, layers, options);
 predictedLabels = classify(net, ds)
 
 %%
-
-
+clc
+sectionsIndices = splitEachLabel(dataset, [.2,.4]);
 
 
 

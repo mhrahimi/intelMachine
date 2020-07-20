@@ -28,7 +28,7 @@ end
 if ~obj.FilteringIsOn & ~obj.TransformationIsOn
     data = rawData;
 else
-    data = cell(width, 1);
+    data = cell(1, width);
 end
 if obj.FilteringIsOn
     for i = 1:width

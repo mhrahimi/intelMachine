@@ -20,6 +20,6 @@ for i = ind
             data(i,:,j) = thisData;
         end
     end
-    disp(i/numel(ind));
+%     disp(i/numel(ind));
 end
 end

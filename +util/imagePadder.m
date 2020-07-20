@@ -1,5 +1,9 @@
 function imgOut = imagePadder(imgIn, paddingType)
 [height, length, width] = size(imgIn);
+if isnan(paddingType)
+    imgOut = imgIn;
+    return
+end
 switch paddingType
     case -1
         layer2 = -1 * ones(height, length);

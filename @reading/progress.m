@@ -10,5 +10,7 @@ function frac = progress(obj)
 %
 %   See also matlab.io.Datastore, read, hasdata, reset, readall,
 %   preview.
+% if nargin == 
+
 frac = 1 - (obj.Len - obj.head)/obj.Len;
 end

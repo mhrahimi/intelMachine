@@ -1,6 +1,6 @@
 function outVals = confMat(trueClass, PredClass, noLabel)
 
-cm = confusionchart(a,b, 'DiagonalColor', 'green', 'Normalization' , 'total-normalized' );
+cm = confusionchart(trueClass,PredClass, 'DiagonalColor', 'green', 'Normalization' , 'total-normalized' );
 cm.RowSummary = 'row-normalized';
 cm.ColumnSummary = 'column-normalized';
 cm.Title = 'Confusion Matrix';
