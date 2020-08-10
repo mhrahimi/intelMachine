@@ -35,7 +35,7 @@ for i = 1:numHarmonics
     smallerThan = (harmonic(i) - freqTolerance < freq);
     biggerThan = (freq < harmonic(i) + freqTolerance);
     freqInd = smallerThan & biggerThan;
-    [tpAmp(i), tpAmpInd(i)] = max(amp.*freqInd');
+    [tpAmp(i), tpAmpInd(i)] = max(amp.*freqInd);
     tpFreq(i) = freq(tpAmpInd(i));
 end
 

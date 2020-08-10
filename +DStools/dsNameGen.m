@@ -5,7 +5,8 @@ function name = dsNameGen(no, sensor, label, extention)
 %
 %   See also dsGen, dsNameAnal.
 
-name = ["N_", num2str(no), "_S_", sensor, "_L_", label, "_"];
+name = ["N_", num2str(no), ...
+    "_S_", char(sensor), "_L_", char(label), "_"];
 if nargin > 3
     name = [name, extention];
 end

@@ -1,6 +1,10 @@
 function [data, detail] = fileHandler(fileFullAdd)
-if nargin == 0
-    fileFullAdd = uigetfile('*.*');
+if nargin == 0 % pop system dialouge
+     [file, path] = uigetfile('*.*');
+     fileFullAdd = fullfile(path, file);
+elseif ~isfile(fileFullAdd)
+    [file, path] = uigetfile(fileFullAdd);
+     fileFullAdd = fullfile(path, file);
 end
 fileSplitted = strsplit(fileFullAdd, '.');
 extention = fileSplitted{end};
